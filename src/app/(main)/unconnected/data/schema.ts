@@ -1,22 +1,21 @@
 import { z } from 'zod';
+import { memberSchema } from '../../members/data/schema';
 
-export const unconnectedMemberSchema = z.object({
-  id: z.string(),
-  name: z.string(),
-  email: z.string().email(),
-  avatar: z.string().url(),
-  age: z.number(),
-  familyStatus: z.string(),
-  interests: z.array(z.string()),
-  joined: z.date(),
-});
+// Unconnected members use the same schema as regular members
+export const unconnectedMemberSchema = memberSchema;
 
 export type UnconnectedMember = z.infer<typeof unconnectedMemberSchema>;
 
 export const connectGroupSchema = z.object({
   id: z.string(),
   name: z.string(),
-  description: z.string(),
+  description: z.string().optional(),
+  meetingDay: z.string().optional(),
+  meetingTime: z.string().optional(),
+  location: z.string().optional(),
+  isActive: z.boolean(),
+  capacity: z.number().optional(),
+  leaderId: z.string().optional(),
 });
 
 export type ConnectGroup = z.infer<typeof connectGroupSchema>;

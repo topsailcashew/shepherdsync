@@ -42,6 +42,18 @@ export function SuggestGroupsAction({ member }: { member: UnconnectedMember }) {
   const initialState = { message: '', error: false };
   const [state, formAction] = useFormState(generateSuggestion, initialState);
 
+  const fullName = `${member.firstName} ${member.lastName}`;
+  const age = member.dateOfBirth
+    ? Math.floor((Date.now() - new Date(member.dateOfBirth).getTime()) / 31557600000)
+    : 'Unknown';
+  const familyStatus = member.maritalStatus?.replace(/_/g, ' ') || 'Not specified';
+  const interests = member.interests || [];
+
+  // Prepare member data string for AI
+  const memberDataString = `Name: ${fullName}, Age: ${age}, Interests: ${interests.join(', ')}, Family Status: ${familyStatus}`;
+  // TODO: Fetch available groups from API
+  const availableGroupsString = 'Sample groups data - to be fetched from API';
+
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -54,7 +66,7 @@ export function SuggestGroupsAction({ member }: { member: UnconnectedMember }) {
         <DialogHeader>
           <DialogTitle>
             AI Group Suggestions for{' '}
-            <span className="font-headline text-primary">{member.name}</span>
+            <span className="font-headline text-primary">{fullName}</span>
           </DialogTitle>
           <DialogDescription>
             Use AI to find the best-fit connect groups for this member based on
@@ -67,19 +79,23 @@ export function SuggestGroupsAction({ member }: { member: UnconnectedMember }) {
             <h4 className="font-semibold text-foreground">Member Profile</h4>
             <div className="text-sm space-y-2">
               <p>
-                <strong>Age:</strong> {member.age}
+                <strong>Age:</strong> {age}
               </p>
               <p>
-                <strong>Family Status:</strong> {member.familyStatus}
+                <strong>Family Status:</strong> {familyStatus}
               </p>
               <div>
                 <strong>Interests:</strong>
                 <div className="flex flex-wrap gap-2 mt-1">
-                  {member.interests.map((interest) => (
-                    <Badge key={interest} variant="secondary">
-                      {interest}
-                    </Badge>
-                  ))}
+                  {interests.length > 0 ? (
+                    interests.map((interest) => (
+                      <Badge key={interest} variant="secondary">
+                        {interest}
+                      </Badge>
+                    ))
+                  ) : (
+                    <span className="text-muted-foreground">No interests listed</span>
+                  )}
                 </div>
               </div>
             </div>
@@ -125,6 +141,8 @@ export function SuggestGroupsAction({ member }: { member: UnconnectedMember }) {
         <DialogFooter>
           <form action={formAction} className="flex gap-2">
             <input type="hidden" name="memberId" value={member.id} />
+            <input type="hidden" name="memberData" value={memberDataString} />
+            <input type="hidden" name="availableGroups" value={availableGroupsString} />
             <DialogClose asChild>
               <Button type="button" variant="secondary">
                 Close

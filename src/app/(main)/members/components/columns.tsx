@@ -35,7 +35,8 @@ export const columns: ColumnDef<Member>[] = [
     enableHiding: false,
   },
   {
-    accessorKey: 'name',
+    id: 'name',
+    accessorFn: (row) => `${row.firstName} ${row.lastName}`,
     header: ({ column }) => {
       return (
         <Button
@@ -49,20 +50,23 @@ export const columns: ColumnDef<Member>[] = [
     },
     cell: ({ row }) => {
       const member = row.original;
+      const fullName = `${member.firstName} ${member.lastName}`;
+      const initials = `${member.firstName[0]}${member.lastName[0]}`.toUpperCase();
       return (
         <div className="flex items-center gap-3">
           <Avatar>
-            <AvatarImage src={member.avatar} alt={member.name} data-ai-hint="person portrait" />
-            <AvatarFallback>
-              {member.name
-                .split(' ')
-                .map((n) => n[0])
-                .join('')}
-            </AvatarFallback>
+            {member.profilePictureUrl && (
+              <AvatarImage
+                src={member.profilePictureUrl}
+                alt={fullName}
+                data-ai-hint="person portrait"
+              />
+            )}
+            <AvatarFallback>{initials}</AvatarFallback>
           </Avatar>
           <div className="flex flex-col">
-            <span className="font-medium">{member.name}</span>
-            <span className="text-sm text-muted-foreground">{member.email}</span>
+            <span className="font-medium">{fullName}</span>
+            <span className="text-sm text-muted-foreground">{member.email || 'No email'}</span>
           </div>
         </div>
       );
@@ -76,12 +80,13 @@ export const columns: ColumnDef<Member>[] = [
       return (
         <Badge
           className={cn(
-            status === 'Active' && 'bg-green-100 text-green-800',
-            status === 'Inactive' && 'bg-red-100 text-red-800',
-            status === 'Pending' && 'bg-yellow-100 text-yellow-800'
+            status === 'ACTIVE' && 'bg-green-100 text-green-800',
+            status === 'INACTIVE' && 'bg-red-100 text-red-800',
+            status === 'PROSPECT' && 'bg-yellow-100 text-yellow-800',
+            status === 'DECEASED' && 'bg-gray-100 text-gray-800'
           )}
         >
-          {status}
+          {status.replace('_', ' ')}
         </Badge>
       );
     },
@@ -90,30 +95,34 @@ export const columns: ColumnDef<Member>[] = [
     },
   },
   {
-    accessorKey: 'roles',
-    header: 'Roles',
+    accessorKey: 'membershipStatus',
+    header: 'Membership',
     cell: ({ row }) => {
-      const roles = row.getValue('roles') as string[];
+      const status = row.getValue('membershipStatus') as string;
       return (
-        <div className="flex flex-wrap gap-1">
-          {roles.map((role) => (
-            <Badge key={role} variant="secondary">
-              {role}
-            </Badge>
-          ))}
-        </div>
+        <Badge variant="secondary">
+          {status.replace(/_/g, ' ')}
+        </Badge>
       );
     },
   },
   {
-    accessorKey: 'engagement',
+    accessorKey: 'engagementLevel',
     header: 'Engagement',
     cell: ({ row }) => {
-      const engagement = row.getValue('engagement') as number;
+      const level = row.getValue('engagementLevel') as string;
+      const levelMap = {
+        NONE: { value: 0, color: 'bg-gray-200' },
+        LOW: { value: 25, color: 'bg-yellow-200' },
+        MEDIUM: { value: 60, color: 'bg-blue-200' },
+        HIGH: { value: 90, color: 'bg-green-200' },
+      };
+      const engagement = levelMap[level as keyof typeof levelMap] || levelMap.NONE;
+
       return (
         <div className="flex items-center gap-2">
-          <Progress value={engagement} className="h-2 w-24" />
-          <span className="text-sm text-muted-foreground">{engagement}%</span>
+          <Progress value={engagement.value} className={cn('h-2 w-24', engagement.color)} />
+          <span className="text-sm text-muted-foreground">{level}</span>
         </div>
       );
     },

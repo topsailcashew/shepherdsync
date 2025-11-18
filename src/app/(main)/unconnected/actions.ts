@@ -3,10 +3,11 @@
 import { suggestConnectGroups } from '@/ai/flows/suggest-connect-groups';
 import type { SuggestConnectGroupsOutput } from '@/ai/flows/suggest-connect-groups';
 import { z } from 'zod';
-import { members, connectGroups } from './data/seed';
 
 const schema = z.object({
   memberId: z.string(),
+  memberData: z.string(),
+  availableGroups: z.string(),
 });
 
 export type FormState = {
@@ -23,37 +24,21 @@ export async function generateSuggestion(
 
   const validatedFields = schema.safeParse({
     memberId: formData.get('memberId'),
+    memberData: formData.get('memberData'),
+    availableGroups: formData.get('availableGroups'),
   });
 
   if (!validatedFields.success) {
     return {
-      message: 'Invalid member ID.',
+      message: 'Invalid request data.',
       error: true,
     };
   }
-
-  const member = members.find((m) => m.id === validatedFields.data.memberId);
-
-  if (!member) {
-    return {
-      message: 'Member not found.',
-      error: true,
-    };
-  }
-
-  const memberData = `Name: ${member.name}, Age: ${
-    member.age
-  }, Interests: ${member.interests.join(', ')}, Family Status: ${
-    member.familyStatus
-  }`;
-  const availableGroups = connectGroups
-    .map((g) => `- ${g.name}: ${g.description}`)
-    .join('\n');
 
   try {
     const result = await suggestConnectGroups({
-      memberData,
-      availableGroups,
+      memberData: validatedFields.data.memberData,
+      availableGroups: validatedFields.data.availableGroups,
     });
     return {
       message: 'Suggestions generated successfully.',
