@@ -1,3 +1,64 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "avatar-1",
+      "description": "A placeholder avatar image for a user.",
+      "imageUrl": "https://images.unsplash.com/photo-1590086782792-42dd2350140d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxwZXJzb24lMjBwb3J0cmFpdHxlbnwwfHx8fDE3NjM0NzE1OTl8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "person portrait"
+    },
+    {
+      "id": "avatar-2",
+      "description": "A placeholder avatar image for a user.",
+      "imageUrl": "https://images.unsplash.com/photo-1531123414780-f74242c2b052?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8cGVyc29uJTIwcG9ydHJhaXR8ZW58MHx8fHwxNzYzNDcxNTk5fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "person portrait"
+    },
+    {
+      "id": "avatar-3",
+      "description": "A placeholder avatar image for a user.",
+      "imageUrl": "https://images.unsplash.com/flagged/photo-1559855603-ce4c8f480d76?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHx3b21hbiUyMHNtaWxpbmd8ZW58MHx8fHwxNzYzMzk3NDM0fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "woman smiling"
+    },
+    {
+      "id": "avatar-4",
+      "description": "A placeholder avatar image for a user.",
+      "imageUrl": "https://images.unsplash.com/photo-1714356590155-f896e15d21c9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxtYW4lMjBnbGFzc2VzfGVufDB8fHx8MTc2MzQ3NjIzNXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "man glasses"
+    },
+    {
+      "id": "avatar-5",
+      "description": "A placeholder avatar image for a user.",
+      "imageUrl": "https://images.unsplash.com/photo-1620913248852-d5f76dc856a7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxwZXJzb24lMjBoYXBweXxlbnwwfHx8fDE3NjM0ODE2Mjl8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "person happy"
+    },
+    {
+      "id": "avatar-6",
+      "description": "A placeholder avatar image for a user.",
+      "imageUrl": "https://images.unsplash.com/photo-1609505848912-b7c3b8b4beda?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHx3b21hbiUyMHBvcnRyYWl0fGVufDB8fHx8MTc2MzQ0NDY2Mnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "woman portrait"
+    },
+    {
+      "id": "avatar-7",
+      "description": "A placeholder avatar image for a user.",
+      "imageUrl": "https://images.unsplash.com/photo-1560250097-0b93528c311a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxtYW4lMjBwcm9maWxlfGVufDB8fHx8MTc2MzQ3MzE0NHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "man profile"
+    },
+    {
+      "id": "avatar-8",
+      "description": "A placeholder avatar image for a user.",
+      "imageUrl": "https://images.unsplash.com/photo-1505274576078-82023d7a7e2a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxwZXJzb24lMjBvdXRkb29yc3xlbnwwfHx8fDE3NjM0NDc4ODl8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "person outdoors"
+    },
+    {
+      "id": "avatar-9",
+      "description": "A placeholder avatar image for a user.",
+      "imageUrl": "https://images.unsplash.com/photo-1662848586769-314289d4c8b7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHx3b21hbiUyMGdsYXNzZXN8ZW58MHx8fHwxNzYzNDUxNTM4fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "woman glasses"
+    },
+    {
+      "id": "avatar-10",
+      "description": "A placeholder avatar image for a user.",
+      "imageUrl": "https://images.unsplash.com/photo-1653071163845-c5851ddedf95?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxtYW4lMjBiZWFyZHxlbnwwfHx8fDE3NjM0NjAyNDR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "man beard"
+    }
+  ]
 }
